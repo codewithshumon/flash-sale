@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 
 import ProductCard from "./components/ProductCard";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchTopProducts = async () => {
@@ -79,13 +81,24 @@ export default function Home() {
     }
   }, [products]);
 
+  const handleAdminClick = () => {
+    router.push("/admin");
+  };
+
   return (
     <div className="relative w-full  h-full">
       <div className="relative w-full max-w-[1440px] h-full px-10 py-20 mx-auto">
-        <h1 className="text-2xl font-bold text-[#0B2A6E] uppercase mb-6">
-          Flash Sale
-        </h1>
-
+        <div className="relative w-full flex items-center justify-between">
+          <h1 className="text-2xl font-bold text-[#0B2A6E] uppercase mb-6">
+            Flash Sale
+          </h1>
+          <button
+            onClick={handleAdminClick}
+            className="bg-[#0B2A6E] text-white px-4 py-2 rounded hover:bg-[#1a3a8e] transition-colors"
+          >
+            Admin
+          </button>
+        </div>
         {loading ? (
           <div className="flex justify-center items-center h-64">
             <p>Loading products...</p>
