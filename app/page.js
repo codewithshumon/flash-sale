@@ -52,7 +52,7 @@ export default function Home() {
     return { hours, minutes, seconds };
   };
 
-  // Update countdown every second
+  // In your Home component's countdown update useEffect
   useEffect(() => {
     if (products.some((product) => product.timeRemaining)) {
       const timer = setInterval(() => {
@@ -62,11 +62,9 @@ export default function Home() {
 
             const newTimeRemaining = product.timeRemaining - 1000;
             if (newTimeRemaining <= 0) {
-              return {
-                ...product,
-                timeRemaining: 0,
-                countdown: { hours: 0, minutes: 0, seconds: 0 },
-              };
+              // Return the product without timeRemaining and countdown
+              const { timeRemaining, countdown, ...rest } = product;
+              return rest;
             }
             return {
               ...product,
@@ -94,7 +92,7 @@ export default function Home() {
           </h1>
           <button
             onClick={handleAdminClick}
-            className="bg-[#0B2A6E] text-white px-4 py-2 rounded hover:bg-[#1a3a8e] transition-colors"
+            className="bg-[#0B2A6E] cursor-pointer text-white px-4 py-2 rounded hover:bg-[#1a3a8e] transition-colors"
           >
             Admin
           </button>
