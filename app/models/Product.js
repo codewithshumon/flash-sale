@@ -11,14 +11,6 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
-    category: {
-      type: String,
-      required: true,
-    },
     regularPrice: {
       type: Number,
       required: true,
@@ -31,22 +23,16 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    totalItems: {
+    itemsLeft: {
       type: Number,
       required: true,
-    },
-    soldItems: {
-      type: Number,
-      default: 0,
     },
     flashSaleEnd: {
       type: Date,
-      required: true,
     },
   },
   {
-    timestamps: true, // This adds createdAt and updatedAt automatically
-    collection: "test", // This sets the collection name to 'test'
+    timestamps: true,
   }
 );
 

@@ -24,6 +24,8 @@ export async function POST(request) {
     const product = await Product.create(body);
     return NextResponse.json({ success: true, data: product }, { status: 201 });
   } catch (error) {
+    console.log("[error error error]", error);
+
     return NextResponse.json(
       { success: false, error: error.message },
       { status: 400 }
